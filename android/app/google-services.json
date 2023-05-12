@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "734019588353",
+    "project_id": "edge-shop-13320",
+    "storage_bucket": "edge-shop-13320.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734019588353:android:d4bd65dfbd7e797df6cb00",
+        "android_client_info": {
+          "package_name": "com.edge_app.edge_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734019588353-ru3pk1gqoeapvbjirhaq4vhckkbjubmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl8k3XmvwN3WtQtmqsWbe7QmkBpzibB6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734019588353-ru3pk1gqoeapvbjirhaq4vhckkbjubmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "734019588353-i0kodn00lla80nb7tbmtjv64etdv0gq7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.edgeapp.edgeApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
