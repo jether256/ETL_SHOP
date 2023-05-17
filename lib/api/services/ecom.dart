@@ -9,6 +9,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../dashboard+Screens/dashboard.dart';
 import '../../dashboard+Screens/ecommerce/checkout/checkout.dart';
@@ -16,12 +17,14 @@ import '../../dashboard+Screens/ecommerce/shippingdetails/shipping.dart';
 import '../../encryption/encrypt.dart';
 import '../../login-signup/forgotpass.dart';
 import '../../login-signup/loginCheck.dart';
+import '../../login-signup/signup.dart';
 import '../../models/cartmodel.dart';
 import '../../models/categorymodel.dart';
 import '../../models/favmodel.dart';
 import '../../models/oderitemmodel.dart';
 import '../../models/partnermodel.dart';
 import '../../models/productmodel.dart';
+import '../../providers/logreg.dart';
 import '../url.dart';
 
 // api calls for all http requests
@@ -105,10 +108,14 @@ class ApiCall {
 
            if(context.mounted){// context is needed for the navigator and snackbar to work
 
+             //final _userProvider=Provider.of<UserProvider>(context);
+
+
              // check if the email already exists else register user
              if(userData=="ERROR"){
 
 
+              ///Navigator.pushNamed(context,SignUp.id);
 
                ScaffoldMessenger.of(context).showSnackBar(
                    SnackBar(
@@ -126,6 +133,12 @@ class ApiCall {
 
                Navigator.push(context,MaterialPageRoute(builder:(context)=>CheckCode(mail:email)));
                //Navigator.pushNamed(context,CheckCode.id);
+
+               //
+               // _userProvider.getselectedEmail(email);
+               // Navigator.pushNamed(context,CheckCode.id);
+
+
 
                ScaffoldMessenger.of(context).showSnackBar(
                    SnackBar(
@@ -180,7 +193,9 @@ class ApiCall {
 
 
           ///route to login page after verification
-          Navigator.pushNamed(context,Login.id);
+          //Navigator.pushNamed(context,Login.id);
+
+          Navigator.pushReplacementNamed(context,Login.id);
 
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -999,7 +1014,9 @@ class ApiCall {
           // Check(context);
 
 
-          Navigator.pushNamed(context, PaymentMethod.id);
+          //Navigator.pushNamed(context, PaymentMethod.id);
+
+          Navigator.pushReplacementNamed(context,PaymentMethod.id);
 
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -1029,8 +1046,8 @@ class ApiCall {
           );
 
           /// route to payment method
-          Navigator.pushNamed(context, PaymentMethod.id);
-
+         // Navigator.pushNamed(context, PaymentMethod.id);
+          Navigator.pushReplacementNamed(context,PaymentMethod.id);
           ///Navigator.push(context, MaterialPageRoute(builder:(context)=>Checkout()));
 
           print(userData);
@@ -1093,8 +1110,8 @@ class ApiCall {
               )
           );
 
-          Navigator.pushNamed(context, Checkout.id);
-
+          //Navigator.pushNamed(context, Checkout.id);
+          Navigator.pushReplacementNamed(context,Checkout.id);
 
           //Navigator.push(context,MaterialPageRoute(builder:(context)=>Checkout()));
 
@@ -1409,7 +1426,8 @@ class ApiCall {
         if(context.mounted){
 
           ///route to login page after password reset
-          Navigator.pushNamed(context, Login.id);
+          //Navigator.pushNamed(context, Login.id);
+          Navigator.pushReplacementNamed(context,Login.id);
 
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

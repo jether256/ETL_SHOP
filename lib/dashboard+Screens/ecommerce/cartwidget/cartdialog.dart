@@ -174,8 +174,8 @@ class _CartDialogState extends State<CartDialog> {
                                 onPressed: () {
 
                                  ///route to shipping details
-                                  Navigator.pushNamed(context, ShippingDetails.id);
-
+                                  //Navigator.pushNamed(context, ShippingDetails.id);
+                                  Navigator.pushReplacementNamed(context,ShippingDetails.id);
                                 },
                               ) ,
                             );

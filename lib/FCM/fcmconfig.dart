@@ -1,7 +1,9 @@
 
 
 import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:edge_app/constants/cola.dart';
 import 'package:edge_app/dashboard+Screens/ecommerce/orders/notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
@@ -29,8 +31,6 @@ requestNotificationPermission() async {
   );
 
 }
-
-
 
 
 fcmconfig({required BuildContext context}){
@@ -77,7 +77,6 @@ fcmconfig({required BuildContext context}){
 
   });
 
- // FirebaseMessaging.onBackgroundMessage((message) => (FlutterRingtonePlayer.play(fromAsset:"assets/noti/ded.mp3" )));
 
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) {

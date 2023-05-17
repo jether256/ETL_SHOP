@@ -111,8 +111,9 @@ class _CheckoutState extends State<Checkout> {
                             child:const Text("Continue shopping",style: TextStyle(color: Colors.white),),
                             onPressed: () {
 
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
-
+                              //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+                              //Navigator.pushNamed(context, Dashboard.id);
+                              Navigator.pushReplacementNamed(context,Dashboard.id);
                             },
                           ),
                         ),

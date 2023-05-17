@@ -15,6 +15,8 @@ import '../../theme/theme.dart';
 import '../../theme/themenotifier.dart';
 import '../dashboard.dart';
 import 'cartwidget/cartdialog.dart';
+import 'creditcards/create-new_screen.dart';
+import 'creditcards/creditcard.dart';
 import 'favorites/favorite.dart';
 import 'orders/notifications.dart';
 
@@ -252,6 +254,29 @@ class _AccountProState extends State<AccountPro> {
                         }),
                   ),
                   title: const Text('Notifications',style: TextStyle(fontSize: 18),),
+                  trailing:const Icon(Icons.arrow_forward_ios_outlined),
+
+                ),
+
+                const SizedBox(height: 10,),
+
+
+                //manage cards
+                ListTile(
+                  onTap: (){
+
+                   // isLoggedIn ?  Navigator.push(context,MaterialPageRoute(builder: (context)=> const CreditCard())):please();
+                    isLoggedIn ?  Navigator.push(context,MaterialPageRoute(builder: (context)=>CreateCard ())):please();
+
+                  },
+                  leading: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.purple.shade100,
+                      shape: BoxShape.circle,
+                    ),
+                    child:const Icon(Icons.credit_card,color:Colors.cyan,size: 35,),
+                  ),
+                  title: const Text('Credit Cards',style: TextStyle(fontSize: 18),),
                   trailing:const Icon(Icons.arrow_forward_ios_outlined),
 
                 ),

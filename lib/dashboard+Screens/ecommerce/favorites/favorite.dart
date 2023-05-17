@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../api/url.dart';
 import '../../../login-signup/login.dart';
 import '../../../providers/favoritepro.dart';
 import '../../../providers/shopcartprovider.dart';
@@ -208,7 +209,8 @@ class _FavoritePageState extends State<FavoritePage> {
                           child:Stack(
                             children: [
                               CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im}',
+                                imageUrl:'https://${BaseUrl.imUrl}${pros[index].im}',
+                                //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im}',
                                 //imageUrl:'https://www.etl.co.ug/assets/images/products/${pros[index].im}',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,

@@ -22,7 +22,7 @@
     </queries>
 
    <application
-        android:label="edge_app"
+        android:label="ETL Shop"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

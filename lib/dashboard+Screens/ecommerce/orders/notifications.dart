@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get_time_ago/get_time_ago.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
@@ -139,11 +140,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         itemCount: published.length,
                         itemBuilder:(context,index){
 
+                          var _convertedTimestamp = DateTime.parse(published[index].date); // Converting into [DateTime] object
+                          var result = GetTimeAgo.parse(_convertedTimestamp);
 
                           return Consumer<MyOrdersProviders>(
                             builder: (context,value,child){
 
                               //final published=value.orders;
+
+
 
                               return Card(
                                   color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
@@ -163,7 +168,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                       ),
                                       title: Text(published[index].title,style:  const TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),),
                                       subtitle: Text(published[index].body,style: TextStyle(color: Colors.white),),
-                                      trailing:Text(Jiffy(published[index].date).fromNow(),style: TextStyle(color: Colors.white),)
+                                      //trailing:Text(Jiffy(published[index].date).fromNow(),style: TextStyle(color: Colors.white),)
+                                      trailing:Text(result,style: const TextStyle(color: Colors.white),),
                                   ));
                             },
                           );

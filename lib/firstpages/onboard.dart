@@ -94,12 +94,13 @@ class _OnBoardingState extends State<OnBoarding> {
 
                     //contro.jumpToPage(page: 2);
 
-                    //Navigator.pushReplacementNamed(context,DashBoard.id);
+                    Navigator.pushReplacementNamed(context,Dashboard.id);
+                    //Navigator.of(context).pushReplacementNamed('/screen4');
 
 
 
 
-                      Navigator.push(context,PageTransition(child: Dashboard(), type:PageTransitionType.fade));
+                      //Navigator.push(context,PageTransition(child: Dashboard(), type:PageTransitionType.fade));
 
 
 

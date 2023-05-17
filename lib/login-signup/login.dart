@@ -261,6 +261,8 @@ class _LoginState extends State<Login> {
                     child: InkWell(
                       onTap: (){
 
+                        //Navigator.pushReplacementNamed(context,CheckMail.id);
+
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> const CheckMail()));
 
                         //EasyLoading.showSuccess('Forgot password clicked.....');

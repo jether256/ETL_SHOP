@@ -398,6 +398,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_credit_card:
+    dependency: "direct main"
+    description:
+      name: flutter_credit_card
+      sha256: "1319687c72d124ce6c902c9e29cbc34f4472fe406a59fa2701d25313e70ba8c7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.6"
   flutter_easyloading:
     dependency: "direct main"
     description:
@@ -533,6 +541,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  get_time_ago:
+    dependency: "direct main"
+    description:
+      name: get_time_ago
+      sha256: dbd81c7f508089b72298b1f24e4e3f67d9e6416f0fc4fe84c102f173e2fe64e7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.8"
   getwidget:
     dependency: "direct main"
     description:

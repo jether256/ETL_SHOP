@@ -94,6 +94,8 @@ dependencies:
   top_snackbar_flutter:
   animated_snack_bar:
   jiffy:
+  flutter_credit_card:
+  get_time_ago:
 
 
 

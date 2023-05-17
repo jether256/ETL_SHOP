@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../api/url.dart';
 import '../../../providers/featuredprovider.dart';
 import '../../../providers/productprovider.dart';
 import '../../../theme/themenotifier.dart';
@@ -121,7 +122,8 @@ class _FeaturedState extends State<Featured> {
                             child:ClipRRect(
                               borderRadius: BorderRadius.circular(4),
                               child:CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
+                                imageUrl:'https://${BaseUrl.imUrl}${pros[index].im1}',
+                                //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
                                 //imageUrl:'https://www.etl.co.ug/assets/images/products/${pros[index].im1}',
                                 height: 180,
                                 width: 220,

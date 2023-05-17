@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../api/url.dart';
 import '../../../providers/my_order_pro.dart';
 import '../../../providers/orderdetailsprovider.dart';
 import '../../../providers/shopcartprovider.dart';
@@ -135,7 +136,9 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                                 borderRadius: BorderRadius.circular(10)
                               ),
                               child: CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${published[index].im}',fit:BoxFit.cover,
+                                imageUrl:'https://${BaseUrl.imUrl}${published[index].im}',
+                                //imageUrl:'https://${BaseUrl.imUrl}/+${pros[index].im1}',
+                               // imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${published[index].im}',fit:BoxFit.cover,
                                 //imageUrl:'https://www.etl.co.ug/assets/images/products/${published[index].im}',fit: BoxFit.cover,
                               ) ,
                             ),

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../api/url.dart';
 import '../../../login-signup/login.dart';
 import '../../../providers/categoryproductprovider.dart';
 import '../../../providers/catprovider.dart';
@@ -205,7 +206,8 @@ class _MainProCatState extends State<MainProCat> {
                         child:Stack(
                           children: [
                             CachedNetworkImage(
-                              imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${prodo[index].im1}',
+                              imageUrl:'https://${BaseUrl.imUrl}${prodo[index].im1}',
+                              //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${prodo[index].im1}',
                              // imageUrl:'https://www.etl.co.ug/assets/images/products/${prodo[index].im1}',
                               width: MediaQuery.of(context).size.width,
                               fit: BoxFit.cover,

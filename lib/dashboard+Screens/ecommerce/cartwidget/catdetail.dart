@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../api/url.dart';
 import '../../../login-signup/login.dart';
 import '../../../providers/categoryproductprovider.dart';
 import '../../../providers/favoritepro.dart';
@@ -199,7 +200,8 @@ class _CatdetailState extends State<Catdetail> {
                         child:Stack(
                           children: [
                             CachedNetworkImage(
-                              imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
+                              imageUrl:'https://${BaseUrl.imUrl}${pros[index].im1}',
+                              //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
                              // imageUrl:'https://www.etl.co.ug/assets/images/products/${pros[index].im1}',
                               width: MediaQuery.of(context).size.width,
                               fit: BoxFit.cover,

@@ -1,6 +1,8 @@
 
 class BaseUrl{
   static String address = "holomboko.000webhostapp.com";
+  //static String address = "etl.co.ug";
+  static String imUrl="$address/api/assets/images/products/";
 
   //authentication
   static String apiRegister = "https://$address/api/log/register.php";

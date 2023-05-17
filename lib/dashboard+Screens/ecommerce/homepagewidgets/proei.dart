@@ -127,7 +127,8 @@ class _ProWidState extends State<ProWid> {
                           child:ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child:CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
+                              imageUrl:'https://${BaseUrl.imUrl}${pros[index].im1}',
+                                //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
                               //imageUrl:'https://www.etl.co.ug/assets/images/products/${pros[index].im1}',
                               height: 180,
                               width: 220,

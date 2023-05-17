@@ -24,6 +24,8 @@ class UserProvider with ChangeNotifier {
   String _cart='';
   String _bal='';
 
+  late String maile;
+
   bool isLoading = false;
 
   bool verifyButton=false;
@@ -66,7 +68,10 @@ class UserProvider with ChangeNotifier {
   String get bal => _bal;
 
 
-
+  getselectedEmail(Email){
+    maile=Email;
+    notifyListeners();
+  }
 
  registerUser({
     required String email,

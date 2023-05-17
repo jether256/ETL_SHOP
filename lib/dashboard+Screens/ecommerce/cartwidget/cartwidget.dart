@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+import '../../../api/url.dart';
 import '../../../constants/cola.dart';
 import '../../../providers/shopcartprovider.dart';
 import '../../../sharedprefrences/usershare.dart';
@@ -234,7 +235,8 @@ class _CartWidgetState extends State<CartWidget> {
                                   children: [
 
                                     CachedNetworkImage(
-                                      imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im}',
+                                      imageUrl:'https://${BaseUrl.imUrl}${pros[index].im}',
+                                      //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im}',
                                       width:100,
                                       height:100,
                                       fit: BoxFit.cover,

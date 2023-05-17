@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../api/url.dart';
 import '../../../login-signup/login.dart';
 import '../../../providers/favoritepro.dart';
 import '../../../providers/shopcartprovider.dart';
@@ -76,9 +77,15 @@ class _ProductDetailsState extends State<ProductDetails> {
    // 'https://www.etl.co.ug/assets/images/products/${widget.im1}',
     //'https://www.etl.co.ug/assets/images/products/${widget.im2}',
     //'https://www.etl.co.ug/assets/images/products/${widget.im3}',
-    'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im1}',
-    'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im2}',
-    'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im3}',
+
+    //
+    'https://${BaseUrl.imUrl}${widget.im1}',
+    'https://${BaseUrl.imUrl}${widget.im2}',
+    'https://${BaseUrl.imUrl}${widget.im3}',
+
+    // 'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im1}',
+    // 'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im2}',
+    // 'https://holomboko.000webhostapp.com/api/assets/images/products/${widget.im3}',
   ];
 
 

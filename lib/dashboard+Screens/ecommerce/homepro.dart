@@ -14,6 +14,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../api/url.dart';
+import '../../constants/cola.dart';
 import '../../login-signup/login.dart';
 import '../../providers/my_order_pro.dart';
 import '../../providers/shopcartprovider.dart';
@@ -273,7 +274,7 @@ class _HomeProductState extends State<HomeProduct> {
                                 child:TextField(
                                   onTap: (){
 
-                                      showSearch(context: context, delegate:SearchAds(list:searchList));
+                                    showSearch(context: context, delegate:SearchAds(list:searchList));
 
                                   },
                                   decoration: InputDecoration(
@@ -334,6 +335,7 @@ class _HomeProductState extends State<HomeProduct> {
                 // ),
                 //flexibleSpace: Image.asset('assets/images/logo.png',fit: BoxFit.cover,),
               ),
+
 
             ];
           },
@@ -616,7 +618,8 @@ class SearchAds extends SearchDelegate<String>{
                           child:Stack(
                             children: [
                               CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${list['pimage1']}',
+                                imageUrl:'https://${BaseUrl.imUrl}${list['pimage1']}',
+                                //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${list['pimage1']}',
                                 //imageUrl:'https://www.etl.co.ug/assets/images/products/${list['pimage1']}',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,

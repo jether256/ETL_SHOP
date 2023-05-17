@@ -19,6 +19,7 @@ import '../../../sharedprefrences/usershare.dart';
 import '../../../theme/theme.dart';
 import '../../../theme/themenotifier.dart';
 import '../productdetail/productdetail.dart';
+import '../../../api/url.dart';
 
 class MoreFeatured extends StatefulWidget {
   const MoreFeatured({Key? key}) : super(key: key);
@@ -224,7 +225,8 @@ class _MoreFeaturedState extends State<MoreFeatured> {
                           child:Stack(
                             children: [
                               CachedNetworkImage(
-                                imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
+                                //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${pros[index].im1}',
+                                imageUrl:'https://${BaseUrl.imUrl}${pros[index].im1}',
                                 //imageUrl:'https://www.etl.co.ug/assets/images/products/${pros[index].im1}',
                                 width: MediaQuery.of(context).size.width,
                                 fit: BoxFit.cover,

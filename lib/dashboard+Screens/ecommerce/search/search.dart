@@ -262,7 +262,8 @@ class _SearchProductState extends State<SearchProduct> {
                               child:Stack(
                                 children: [
                                   CachedNetworkImage(
-                                    imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${listSearchProduct[index].im1}',
+                                    imageUrl:'https://${BaseUrl.imUrl}${listSearchProduct[index].im1}',
+                                    //imageUrl:'https://holomboko.000webhostapp.com/api/assets/images/products/${listSearchProduct[index].im1}',
                                     //imageUrl:'https://www.etl.co.ug/assets/images/products/${listSearchProduct[index].im1}',
                                     width: MediaQuery.of(context).size.width,
                                     fit: BoxFit.cover,

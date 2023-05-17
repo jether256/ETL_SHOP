@@ -1,3 +1,4 @@
+import 'package:edge_app/login-signup/signup.dart';
 import 'package:edge_app/providers/logreg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -55,6 +56,7 @@ class _CheckCodeState extends State<CheckCode> {
   Widget build(BuildContext context) {
 
     final themeProvider = Provider.of<ThemePro>(context);
+    final _userProvider=Provider.of<UserProvider>(context);
 
 
     return Scaffold(
@@ -127,6 +129,7 @@ class _CheckCodeState extends State<CheckCode> {
                           if(_formKey.currentState!.validate()){
 
                           auth.verifyOtp(email:widget.mail,code:_otp!, context: context);
+                          //auth.verifyOtp(email:_userProvider.maile,code:_otp!, context: context);
 
 
                           }
@@ -142,6 +145,11 @@ class _CheckCodeState extends State<CheckCode> {
                   ),
                 ),
 
+                const SizedBox(height: 20,),
+
+                TextButton(onPressed:(){
+                  Navigator.pushNamed(context,SignUp.id);
+                }, child:const Text('Back to Signup',style: TextStyle(fontSize: 18),)),
                 const SizedBox(height: 50,),
               ],
             ),
