@@ -124,115 +124,121 @@ if(Id != null){
 
     final themeProvider = Provider.of<ThemePro>(context);
 
-    return Scaffold(
-      backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.grey[100],
+    return WillPopScope(
+        child: Scaffold(
+          backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.grey[100],
 
-      bottomNavigationBar:  BottomAppBar(
-        child: Container(
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              gradient: LinearGradient(
-                  colors: [
-                    blueGradient.darkShade,
-                    blueGradient.lightShade,
-                  ]
-              )
+          bottomNavigationBar:  BottomAppBar(
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  gradient: LinearGradient(
+                      colors: [
+                        blueGradient.darkShade,
+                        blueGradient.lightShade,
+                      ]
+                  )
+              ),
+              child:Row(
+                children: [
+                  MaterialButton(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children:  [
+                          Icon(_selectedIndex== 0 ? Icons.home:Icons.home_outlined,color:_selectedIndex== 0 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 0 ? 30:23)
+                        ],
+                      ),
+                      onPressed:(){
+
+
+
+                        _onItemTapped(0);
+                      }
+
+                  ),
+
+                  MaterialButton(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children:  [
+                          Icon(_selectedIndex== 1 ? Icons.dashboard:Icons.dashboard_outlined,color: _selectedIndex== 1 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 1 ? 30:23,)
+                        ],
+                      ),
+                      onPressed:(){
+
+
+                        _onItemTapped(1);
+                      }
+
+                  ),
+                  MaterialButton(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+
+                          Consumer<ShoppingCartProvider>(
+                              builder: (context,value,child)
+                              {
+
+                                final count=value.count;
+
+                                return  Badge(
+                                  label:count== null ? const Text('0',style: TextStyle(color: Colors.white,fontSize: 10),):Text('$count',style: const TextStyle(color: Colors.white,fontSize: 10),),
+                                  child:Icon(_selectedIndex== 2 ?Icons.shopping_cart:Icons.shopping_cart_outlined,color:_selectedIndex== 2 ? Colors.black87:Colors.white,size: _selectedIndex == 2 ? 30:23) ,
+                                );
+
+                              }),
+
+
+
+                        ],
+                      ),
+                      onPressed:(){
+
+
+                        _onItemTapped(2);
+
+                      }
+
+                  ),
+                  MaterialButton(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children:  [
+                          Icon(_selectedIndex== 3 ?Icons.person:Icons.person_outline_outlined,color:_selectedIndex== 3 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 3 ? 30:23)
+                        ],
+                      ),
+                      onPressed:(){
+
+
+
+                        _onItemTapped(3);
+                      }
+
+                  ),
+                ],
+              ) ,
+            ),
+
           ),
-          child:Row(
-            children: [
-              MaterialButton(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children:  [
-                      Icon(_selectedIndex== 0 ? Icons.home:Icons.home_outlined,color:_selectedIndex== 0 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 0 ? 30:23)
-                    ],
-                  ),
-                  onPressed:(){
-
-
-
-                    _onItemTapped(0);
-                  }
-
-              ),
-
-              MaterialButton(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children:  [
-                      Icon(_selectedIndex== 1 ? Icons.dashboard:Icons.dashboard_outlined,color: _selectedIndex== 1 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 1 ? 30:23,)
-                    ],
-                  ),
-                  onPressed:(){
-
-
-                    _onItemTapped(1);
-                  }
-
-              ),
-              MaterialButton(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-
-                    Consumer<ShoppingCartProvider>(
-                    builder: (context,value,child)
-                        {
-
-                        final count=value.count;
-
-                        return  Badge(
-                        label:count== null ? const Text('0',style: TextStyle(color: Colors.white,fontSize: 10),):Text('$count',style: const TextStyle(color: Colors.white,fontSize: 10),),
-                        child:Icon(_selectedIndex== 2 ?Icons.shopping_cart:Icons.shopping_cart_outlined,color:_selectedIndex== 2 ? Colors.black87:Colors.white,size: _selectedIndex == 2 ? 30:23) ,
-                        );
-
-                        }),
-
-
-
-                    ],
-                  ),
-                  onPressed:(){
-
-
-                    _onItemTapped(2);
-
-                  }
-
-              ),
-              MaterialButton(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children:  [
-                      Icon(_selectedIndex== 3 ?Icons.person:Icons.person_outline_outlined,color:_selectedIndex== 3 ? Colors.red.shade700:Colors.white,size: _selectedIndex == 3 ? 30:23)
-                    ],
-                  ),
-                  onPressed:(){
-
-
-
-                    _onItemTapped(3);
-                  }
-
-              ),
-            ],
-          ) ,
+          // extendBody: true,
+          body:isLoggedIn ? _widgetOptionsLogged[_selectedIndex]:_widgetOptionsLoggedNot[_selectedIndex],
+          // bottomNavigationBar:CurvedNavigationBar(
+          //   color:themeProvider.isDarkMode ? Colors.grey.shade700:mainColor,
+          //   buttonBackgroundColor:themeProvider.isDarkMode ? Colors.grey.shade700:mainColor,
+          //   backgroundColor: Colors.transparent,
+          //   height: 60,
+          //   items:items,
+          //   animationCurve: Curves.easeInOut,
+          //   animationDuration: const Duration(microseconds: 300),
+          //   index:currentIndex,
+          //   onTap:onTap,
+          // ),
         ),
+      onWillPop:() async{
 
-      ),
-      // extendBody: true,
-      body:isLoggedIn ? _widgetOptionsLogged[_selectedIndex]:_widgetOptionsLoggedNot[_selectedIndex],
-      // bottomNavigationBar:CurvedNavigationBar(
-      //   color:themeProvider.isDarkMode ? Colors.grey.shade700:mainColor,
-      //   buttonBackgroundColor:themeProvider.isDarkMode ? Colors.grey.shade700:mainColor,
-      //   backgroundColor: Colors.transparent,
-      //   height: 60,
-      //   items:items,
-      //   animationCurve: Curves.easeInOut,
-      //   animationDuration: const Duration(microseconds: 300),
-      //   index:currentIndex,
-      //   onTap:onTap,
-      // ),
+        return false;
+      },
     );
   }
 

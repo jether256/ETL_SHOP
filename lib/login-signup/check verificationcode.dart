@@ -59,103 +59,109 @@ class _CheckCodeState extends State<CheckCode> {
     final _userProvider=Provider.of<UserProvider>(context);
 
 
-    return Scaffold(
-      //resizeToAvoidBottomInset: false,
-      backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.white,
-      body:Consumer<UserProvider>(
-        builder: (context,auth,child){
+    return WillPopScope(
+        child: Scaffold(
+          //resizeToAvoidBottomInset: false,
+          backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.white,
+          body:Consumer<UserProvider>(
+              builder: (context,auth,child){
 
-          return Form(
-            key: _formKey,
-            child: ListView(
-              padding:const EdgeInsets.only(left: 10,right: 10,top: 30),
-              children:  [
-                const Padding(
-                  padding: EdgeInsets.only(top: 30.0,bottom: 20),
-                  child: Center(child: Text('Check Mail Verification Code',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))),
-                ),
+                return Form(
+                  key: _formKey,
+                  child: ListView(
+                    padding:const EdgeInsets.only(left: 10,right: 10,top: 30),
+                    children:  [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 30.0,bottom: 20),
+                        child: Center(child: Text('Check Mail Verification Code',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))),
+                      ),
 
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0,bottom: 10,right: 10,left: 10),
-                  child: Center(child: Text('Please enter digit code sent to your Email',style: TextStyle(fontSize: 18))),
-                ),
-                //
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0,bottom: 10,right: 10,left: 10),
+                        child: Center(child: Text('Please enter digit code sent to your Email',style: TextStyle(fontSize: 18))),
+                      ),
+                      //
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 30,
+                          ),
 
-                    Image.asset('assets/images/logo.png',width: 115),
+                          Image.asset('assets/images/logo.png',width: 115),
 
-                    const SizedBox(height: 30,),
-                  ],
-                ),
-
-
-                // Implement 4 input fields
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    OtpInput(_fieldOne, true), // auto focus
-                    OtpInput(_fieldTwo, false),
-                    OtpInput(_fieldThree, false),
-                    OtpInput(_fieldFour, false),
-                    OtpInput(_fieldFive, false),
-                  ],
-                ),
+                          const SizedBox(height: 30,),
+                        ],
+                      ),
 
 
-                const SizedBox(height: 30,),
-                //
-                Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20),
-                  child:Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child:ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                      onPressed: (){
+                      // Implement 4 input fields
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          OtpInput(_fieldOne, true), // auto focus
+                          OtpInput(_fieldTwo, false),
+                          OtpInput(_fieldThree, false),
+                          OtpInput(_fieldFour, false),
+                          OtpInput(_fieldFive, false),
+                        ],
+                      ),
 
 
-                        setState(() {
-
-                          _otp = _fieldOne.text + _fieldTwo.text + _fieldThree.text + _fieldFour.text + _fieldFive.text;
-
-                          if(_formKey.currentState!.validate()){
-
-                          auth.verifyOtp(email:widget.mail,code:_otp!, context: context);
-                          //auth.verifyOtp(email:_userProvider.maile,code:_otp!, context: context);
-
-
-                          }
-
-
-                        });
+                      const SizedBox(height: 30,),
+                      //
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,right: 20),
+                        child:Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child:ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                            onPressed: (){
 
 
+                              setState(() {
+
+                                _otp = _fieldOne.text + _fieldTwo.text + _fieldThree.text + _fieldFour.text + _fieldFive.text;
+
+                                if(_formKey.currentState!.validate()){
+
+                                  auth.verifyOtp(email:widget.mail,code:_otp!, context: context);
+                                  //auth.verifyOtp(email:_userProvider.maile,code:_otp!, context: context);
 
 
-                      }, child:const Text('Confirm',style: TextStyle(color: Colors.white),),
-                    ),
+                                }
+
+
+                              });
+
+
+
+
+                            }, child:const Text('Confirm',style: TextStyle(color: Colors.white),),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 20,),
+                      //
+                      // TextButton(onPressed:(){
+                      //   Navigator.pushNamed(context,SignUp.id);
+                      // }, child:const Text('Back to Signup',style: TextStyle(fontSize: 18),)),
+                      const SizedBox(height: 50,),
+                    ],
                   ),
-                ),
+                );
 
-                const SizedBox(height: 20,),
+              }),
+        ),
+      onWillPop:() async{
 
-                TextButton(onPressed:(){
-                  Navigator.pushNamed(context,SignUp.id);
-                }, child:const Text('Back to Signup',style: TextStyle(fontSize: 18),)),
-                const SizedBox(height: 50,),
-              ],
-            ),
-          );
-
-        }),
+        return false;
+      },
     );
   }
 }

@@ -39,63 +39,64 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
+    return WillPopScope(
+        child: Scaffold(
+          body: Stack(
+            alignment: Alignment.center,
+            children: [
 
-          LiquidSwipe(
-            pages:pages,
-            liquidController: contro,
-            onPageChangeCallback: onPage,
-            slideIconWidget: const Icon(Icons.arrow_back_ios,color:Colors.white,),
-            enableSideReveal: true,
-          ),
+              LiquidSwipe(
+                pages:pages,
+                liquidController: contro,
+                onPageChangeCallback: onPage,
+                slideIconWidget: const Icon(Icons.arrow_back_ios,color:Colors.white,),
+                enableSideReveal: true,
+              ),
 
-          Positioned(
-            bottom: 30,
+              Positioned(
+                  bottom: 30,
                   left: 8,
-              child:OutlinedButton(
-                onPressed: () {
-                  //
-                  int nextp=contro.currentPage+1;
-                  contro.animateToPage(page: nextp);
+                  child:OutlinedButton(
+                    onPressed: () {
+                      //
+                      int nextp=contro.currentPage+1;
+                      contro.animateToPage(page: nextp);
 
 
 
 
-                },
-                style:ElevatedButton.styleFrom(
-                  side: const BorderSide(color: Colors.black26),
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(10),
-                  onPrimary: Colors.white,
-                ),
-                child:Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    color: Color(0xff272727),shape: BoxShape.circle
-                  ),
-                  child: const Icon(Icons.arrow_forward_ios),
-                ),
+                    },
+                    style:ElevatedButton.styleFrom(
+                      side: const BorderSide(color: Colors.black26),
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(10),
+                      onPrimary: Colors.white,
+                    ),
+                    child:Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                          color: Color(0xff272727),shape: BoxShape.circle
+                      ),
+                      child: const Icon(Icons.arrow_forward_ios),
+                    ),
 
-              )
-          ),
+                  )
+              ),
 
-          Positioned(
-            top: 50,
-              right: 20,
-              child:TextButton(
-                  onPressed:() async {
+              Positioned(
+                top: 50,
+                right: 20,
+                child:TextButton(
+                    onPressed:() async {
 
-                    //now change onboard value to true;
-                    
-                    store.write('Boarding', true);
+                      //now change onboard value to true;
 
-                    //contro.jumpToPage(page: 2);
+                      store.write('Boarding', true);
 
-                    Navigator.pushReplacementNamed(context,Dashboard.id);
-                    //Navigator.of(context).pushReplacementNamed('/screen4');
+                      //contro.jumpToPage(page: 2);
+
+                      Navigator.pushReplacementNamed(context,Dashboard.id);
+                      //Navigator.of(context).pushReplacementNamed('/screen4');
 
 
 
@@ -105,27 +106,32 @@ class _OnBoardingState extends State<OnBoarding> {
 
 
 
-                    //now value should change to true if we restart.
+                      //now value should change to true if we restart.
 
-                  },
-                  child:const Text('Skip',style: TextStyle(color: Colors.white),)
-              ),
-          ),
-
-          Positioned(
-            bottom: 10,
-              child:AnimatedSmoothIndicator(
-                activeIndex:contro.currentPage,
-                count:3,
-                effect: const WormEffect(
-                  activeDotColor: Color(0xff272727),
-                  dotHeight:5.0,
+                    },
+                    child:const Text('Skip',style: TextStyle(color: Colors.white),)
                 ),
               ),
-          ),
 
-        ],
-      ),
+              Positioned(
+                bottom: 10,
+                child:AnimatedSmoothIndicator(
+                  activeIndex:contro.currentPage,
+                  count:3,
+                  effect: const WormEffect(
+                    activeDotColor: Color(0xff272727),
+                    dotHeight:5.0,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      onWillPop:() async{
+
+        return false;
+      },
     );
   }
 

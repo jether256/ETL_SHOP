@@ -41,112 +41,118 @@ class _CheckMailState extends State<CheckMail> {
     final themeProvider = Provider.of<ThemePro>(context);
 
 
-    return Scaffold(
-      //resizeToAvoidBottomInset: false,
-      backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.white,
-      body: SafeArea(
+    return WillPopScope(
+        onWillPop:() async{
 
-          child:Form(
-            key: _formKey,
-            child: ListView(
-              padding:const EdgeInsets.only(left: 10,right: 10),
-              children:  [
-                const Padding(
-                  padding: EdgeInsets.only(top: 30.0,bottom: 30),
-                  child: Center(child: Text('Check Mail',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold))),
-                ),
+          return false;
+        },
+        child:Scaffold(
+          //resizeToAvoidBottomInset: false,
+          backgroundColor: themeProvider.isDarkMode ? Colors.grey.shade400:Colors.white,
+          body: SafeArea(
 
-
-
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 30,
+              child:Form(
+                key: _formKey,
+                child: ListView(
+                  padding:const EdgeInsets.only(left: 10,right: 10),
+                  children:  [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 30.0,bottom: 30),
+                      child: Center(child: Text('Check Mail',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold))),
                     ),
 
-                    Image.asset('assets/images/logo.png',width: 115),
 
-                    const SizedBox(height: 30,),
+
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+
+                        Image.asset('assets/images/logo.png',width: 115),
+
+                        const SizedBox(height: 30,),
+                      ],
+                    ),
+
+
+                    //email textfield
+                    TextFormField(
+                        controller: _ema,
+                        cursorColor: Colors.blue.shade200,
+                        decoration: InputDecoration(
+                            hintText: 'Email',
+                            prefixIcon:Icon(Icons.email,size: 18,color: themeProvider.isDarkMode ? Colors.white: Colors.grey,),
+                            filled: true,
+                            fillColor:themeProvider.isDarkMode ? Colors.grey.shade500:Colors.grey.shade200,
+                            enabledBorder: UnderlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                              borderSide: const BorderSide(color: Colors.blue),
+                            )
+                        ),
+                        validator: (value){
+                          if(value!.isEmpty){
+
+                            return 'Enter Email';
+                          }
+                          bool _isValid= (EmailValidator.validate(value));
+                          if(_isValid==false){
+                            return 'Enter Valid Email Address';
+
+                          }
+                          return null;
+
+                        }
+                    ),
+
+                    const SizedBox(height: 10,),
+
+                    Consumer<UserProvider>(
+                        builder: (context, auth, child) {
+
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 20,right: 20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                              onPressed: (){
+
+
+                                if(_formKey.currentState!.validate()){
+
+                                  //continue if the textfields are not empty
+                                  if (
+                                  _ema.text !='') {
+
+                                    //post edittext data to login function from the UserProvider
+                                    auth.sendMail(
+                                        email: _ema.text,
+                                        context: context);
+
+                                  }
+
+
+                                }
+
+                              }, child:const Text('Send',style: TextStyle(color: Colors.white),),
+                            ),
+                          );
+
+                        }),
+
+
+
+                    const SizedBox(height: 50,),
                   ],
                 ),
-
-
-                //email textfield
-                TextFormField(
-                    controller: _ema,
-                    cursorColor: Colors.blue.shade200,
-                    decoration: InputDecoration(
-                        hintText: 'Email',
-                        prefixIcon:Icon(Icons.email,size: 18,color: themeProvider.isDarkMode ? Colors.white: Colors.grey,),
-                        filled: true,
-                        fillColor:themeProvider.isDarkMode ? Colors.grey.shade500:Colors.grey.shade200,
-                        enabledBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          borderSide: const BorderSide(color: Colors.blue),
-                        )
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty){
-
-                        return 'Enter Email';
-                      }
-                      bool _isValid= (EmailValidator.validate(value));
-                      if(_isValid==false){
-                        return 'Enter Valid Email Address';
-
-                      }
-                      return null;
-
-                    }
-                ),
-
-                const SizedBox(height: 10,),
-
-                Consumer<UserProvider>(
-                    builder: (context, auth, child) {
-
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 20,right: 20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                          onPressed: (){
-
-
-                            if(_formKey.currentState!.validate()){
-
-                              //continue if the textfields are not empty
-                              if (
-                              _ema.text !='') {
-
-                                //post edittext data to login function from the UserProvider
-                                auth.sendMail(
-                                    email: _ema.text,
-                                    context: context);
-
-                              }
-
-
-                            }
-
-                          }, child:const Text('Send',style: TextStyle(color: Colors.white),),
-                        ),
-                      );
-
-                    }),
-
-
-
-                const SizedBox(height: 50,),
-              ],
-            ),
-          )
-      ),
+              )
+          ),
+        )
     );
   }
 }
